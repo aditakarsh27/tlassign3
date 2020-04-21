@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block header %}
+    <style>img.card-img-top:hover
+        {
+            transform: scale(1.1,1.1);
+        }</style>
+{% endblock %}
+{% block title %}Home{% endblock %}
+{% block items_active %}active{% endblock %}
+
+{% block body %}
+    {% if items %}
+        {% for item in items %}
+        <a style="font-family: 'Calibri'; font-size: 1.5vw;" href="/{{ item.pk }}/">
+            <div class="card" style="width: 30vw; min-width: 230px; display: inline-block; padding-left: 10vw; ">
+                <img class="card-img-top" style="width: 20vw; min-width: 200px; height: 20vw; min-height: 200px; " src="{{item.item_picture}}"  alt="Product Image">
+                <div class="card-body" style="font-family: 'Lato'; font-size: 1.5vw;">
+                  <h5 class="card-text" style="font-family: 'Montserrat'; font-size: 2vw;" >{{ item.name }}</h5>
+                {% if item.availability %}
+                    <p class="card-text" style="color: green;">Available</p>
+                    {% else %}
+                        <p class="card-text" style="color: red;">Unavailable</p>
+                {% endif %}</p>
+                </div>
+            </div>
+        </a>
+        {% endfor %}
+    {% else %}
+        <p>No items are available.</p>
+    {% endif %}
+{% endblock %}

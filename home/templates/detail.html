@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}{{item.name}}{% endblock %}
+
+{% block body %}
+{% if item %}
+    <h1 style="font-family: 'Lato'; font-size: 5vw;">{{item.name}}</h1>
+    <img src="{{item.item_picture}}" style="height: 30vw;">
+    <p style="font-family: 'Montserrat'; font-size: 2vw;">{{item.description}}</p>
+    {% if item.availability %}
+        <p style="color: green;">Available</p>
+        {% else %}
+            <p style="color: red;">Unavailable :(</p>
+    {% endif %}
+    <p> ₹ {{item.price}}</p>
+    <button type="button" class="btn btn-default"><a href="edit_item">Edit Item</a></button>
+    <button type="button" class="btn btn-default"><a href="delete_item">Delete Item</a></button>
+    {% else %}
+        <h2 style="font-family: 'Montserrat'; font-size: 2vw;">"There are no items at all."</h2>
+{% endif %}
+{% endblock %}
